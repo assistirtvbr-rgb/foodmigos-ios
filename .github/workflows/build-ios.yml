@@ -1,0 +1,48 @@
+name: Build FoodMigos iOS (.IPA)
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install CocoaPods Dependencies
+        run: |
+          cd src
+          pod install
+
+      - name: Build Xcode Project
+        run: |
+          cd src
+          xcodebuild -workspace FoodMigos.xcworkspace \
+            -scheme FoodMigos \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath build/FoodMigos.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            archive
+
+      - name: Package into .IPA
+        run: |
+          cd src
+          mkdir -p Payload
+          cp -r build/FoodMigos.xcarchive/Products/Applications/FoodMigos.app Payload/
+          zip -r FoodMigos.ipa Payload
+          mkdir -p ../dist
+          mv FoodMigos.ipa ../dist/
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FoodMigos-iOS-IPA
+          path: dist/FoodMigos.ipa
+          retention-days: 14
