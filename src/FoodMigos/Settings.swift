@@ -10,12 +10,11 @@ let gcmMessageIDKey = "00000000000" // update this with actual ID if using Fireb
 // URL for first launch
 let rootUrl = URL(string: "https://foodmigos.com/index.php")!
 
-let allowedOrigins: [String] = ["foodmigos.com"]
-
+let allowedOrigins: [String] = ["foodmigos.com", "google.com", "accounts.google.com", "accounts.youtube.com"]
 
 // auth origins will open in modal and show toolbar for back into the main origin.
 // These should also appear in Info.plist
-let authOrigins: [String] = ["accounts.google.com"]
+let authOrigins: [String] = []
 // allowedOrigins + authOrigins <= 10
 
 let platformCookie = Cookie(name: "app-platform", value: "iOS App Store")

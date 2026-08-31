@@ -99,7 +99,9 @@
 	<key>WKAppBoundDomains</key>
 	<array>
 		<string>foodmigos.com</string>
+		<string>google.com</string>
 		<string>accounts.google.com</string>
+		<string>accounts.youtube.com</string>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
