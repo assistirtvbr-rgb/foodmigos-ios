@@ -19,7 +19,7 @@ jobs:
       - name: Install CocoaPods Dependencies
         run: |
           cd src
-          pod install --repo-update
+          pod install --repo-update || (sleep 5 && pod install --repo-update) || (sleep 10 && pod install)
 
       - name: Build Xcode Project for iOS Device
         run: |
