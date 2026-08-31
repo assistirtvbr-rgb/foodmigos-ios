@@ -98,7 +98,7 @@
 	<true/>
 	<key>WKAppBoundDomains</key>
 	<array>
-		<string>rogerioberto.com/foodmigos/index.php</string>
+		<string>foodmigos.com</string>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
